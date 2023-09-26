@@ -1,5 +1,6 @@
 package in.wh.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,12 @@ public class ShipmentTypeServiceIMPL implements IShipmentTypeService {
 		return sh;
 	}
 
+	@Override
+	public List<ShipmentType> retriveAllShipmentType() {
+		List<ShipmentType> listOfShipments=shipRepo.findAll();
+		return listOfShipments;
+	}
+	
 	@Override
 	public Boolean isShipmentTypeByIdAvailable(Integer id) {
 		return shipRepo.existsById(id);

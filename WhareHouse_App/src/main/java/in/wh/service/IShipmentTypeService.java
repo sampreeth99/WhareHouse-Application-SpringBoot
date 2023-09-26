@@ -1,5 +1,7 @@
 package in.wh.service;
 
+import java.util.List;
+
 import in.wh.model.ShipmentType;
 
 public interface IShipmentTypeService {
@@ -12,7 +14,11 @@ public interface IShipmentTypeService {
 	
 	public ShipmentType retriveShipmentTypeById(Integer id);
 	
+	public List<ShipmentType> retriveAllShipmentType();
+	
+	
 	public Boolean isShipmentTypeByIdAvailable(Integer id);
+	
 	
 	
 	

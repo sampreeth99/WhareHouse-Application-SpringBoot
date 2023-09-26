@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shipmets</title>
+</head>
+<body style="text-align: center;">
+<div th:text="${deleteOuput}">
+
+</div>
+<div th:each="ships:${listOfShipmets}">
+<p th:text="${ships}"></p>
+
+</div>
+</body>
+</html>
