@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>uoms</title>
+</head>
+<body style="text-align: center;">
+
+<div th:text="${deletedOutput}">
+
+</div>
+
+<div th:each="uom:${listOfUoms}">
+  <p th:text="${uom}"></p>
+</div>
+
+</body>
+</html>

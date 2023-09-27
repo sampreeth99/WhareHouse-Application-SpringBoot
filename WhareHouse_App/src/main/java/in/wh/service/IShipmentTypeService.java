@@ -8,7 +8,7 @@ public interface IShipmentTypeService {
 	
 	public String saveShipmentType(ShipmentType shipmentType);
 	
-	public String updateShipmentTypeById(Integer id);
+	public String updateShipmentTypeById(ShipmentType shipmentType);
 	
 	public String deleteShipmentTypeById(Integer id);
 	

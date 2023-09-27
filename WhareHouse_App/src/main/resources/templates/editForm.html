@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Shipment Edit</title>
+</head>
+<body style="text-align: center;">
+
+<div>
+  <form action="shipmentType/update" method="post" th:object="${shipForm}">
+    
+    shipmentMode<input type="text" id="shipmentMode" th:field="*{shipmentMode}" >
+  <br>
+  
+    shipmentCode<input type="text" th:field="*{shipmentCode}">
+  <br>
+  
+    enableShipment<input type="text" th:field="*{enableShipment}" >
+  <br>
+  
+  decsription<input type="text"  th:field="*{description}">
+  <br>
+  
+  <input type="submit">
+  
+  
+  
+  </form>
+
+
+</div>
+
+</body>
+</html>

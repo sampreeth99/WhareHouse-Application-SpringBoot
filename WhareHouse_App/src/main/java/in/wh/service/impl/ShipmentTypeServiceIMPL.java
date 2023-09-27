@@ -3,6 +3,7 @@ package in.wh.service.impl;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,14 +27,24 @@ public class ShipmentTypeServiceIMPL implements IShipmentTypeService {
 	}
 
 	@Override
-	public String updateShipmentTypeById(Integer id) {
+	public String updateShipmentTypeById(ShipmentType shipmentType) {
 		ShipmentType s=null;
-	    Optional<ShipmentType> opt=shipRepo.findById(id);
+		String msg=null;
+	    Optional<ShipmentType> opt=shipRepo.findById(shipmentType.getShipmentId());
 	    if (opt.isPresent()) {
-			ShipmentType shipmentType=opt.get();
-			s=shipRepo.save(shipmentType);
+			ShipmentType shipmentType1=opt.get();
+			
+			BeanUtils.copyProperties(shipmentType, shipmentType1);
+			shipRepo.save(shipmentType1);
+			
+			
+			msg="Shipment is Updated succesfully by id"+shipmentType1.getShipmentId();
 		}
-		return "Shipment was updated Succesfully by id"+s.getShipmentId();
+	    else {
+
+			msg="Shipment not found for updation"+shipmentType.getShipmentId();
+	    }
+		return msg;
 	}
 
 	@Override

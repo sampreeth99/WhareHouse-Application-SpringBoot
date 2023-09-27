@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Uom Edit</title>
+</head>
+<body style="text-align: center;">
+<div>
+  <form th:action="@{/uom/update}" method="post" th:object="${u}">
+  
+  <input type="text" hidden="true" th:field="*{uomId}">
+  <br>
+  
+  Uom type <input type="text"  th:field="*{uomType}">
+  <br>
+  
+  
+  Uom Model <input type="text" th:field="*{uomModel}">
+  <br>
+  
+  Description <input type="text" th:field="*{description}">
+  <br>
+  
+   <input type="submit" >
+  
+  
+  
+  
+  
+  </form>
+</div>
+
+
+</body>
+</html>

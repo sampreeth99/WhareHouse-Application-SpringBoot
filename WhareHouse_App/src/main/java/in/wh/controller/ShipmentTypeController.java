@@ -3,12 +3,12 @@ package in.wh.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +24,7 @@ public class ShipmentTypeController {
 	
 	@GetMapping("/register")
 	public String showShipmentRegisterForm() {
-		return "shipment_register_form";
+		return "shipment_type/shipment_register_form";
 		
 	}
 	
@@ -33,7 +33,7 @@ public class ShipmentTypeController {
 	
 		String saveOuptput=shipService.saveShipmentType(shipmentType);
 		map.put("savedResultMsg", saveOuptput);
-		return "register_success";
+		return "shipment_type/register_success";
 		
 	}
 	
@@ -41,7 +41,7 @@ public class ShipmentTypeController {
 	public String getAllShipmentTypes(Map<String, Object> map) {
 		List<ShipmentType> listofShipmentTypes=shipService.retriveAllShipmentType();
 		map.put("listOfShipmets", listofShipmentTypes);
-		return "all_shipments";
+		return "shipment_type/all_shipments";
 	}
 	
 	@GetMapping("oneShipmentType")
@@ -49,7 +49,23 @@ public class ShipmentTypeController {
 		ShipmentType oneShipmentType=shipService.retriveShipmentTypeById(id);
 		System.out.println(oneShipmentType);
 		map.put("oneShipmentType", oneShipmentType);
-		return "show_one_shipment";
+		return "shipment_type/show_one_shipment";
+	}
+	
+	@GetMapping("edit")
+	public String showShipmentTypeEditFormById(@RequestParam Integer id,@ModelAttribute("shipForm") ShipmentType shipmentType) {
+		ShipmentType shipmentType2=shipService.retriveShipmentTypeById(id);
+		String updatedMsg=null;
+			BeanUtils.copyProperties(shipmentType2, shipmentType);
+		return "shipment_type/editForm";
+	}
+	
+	@PostMapping("/update")
+	public String processEditForm(@ModelAttribute ShipmentType shipmentType,Map<String, Object> map) {
+		String updatedMsg=shipService.updateShipmentTypeById(shipmentType);
+		map.put("updatedMsg", updatedMsg);
+		
+		return "shipment_type/updateResult";
 	}
 	
 	@GetMapping("/deleteById")
@@ -58,6 +74,9 @@ public class ShipmentTypeController {
 		map.put("deleteOuput", deleteOuput);
 		return "forward:allShipmentTypes";
 	}
+	
+	
+	
 	
 	
 	
