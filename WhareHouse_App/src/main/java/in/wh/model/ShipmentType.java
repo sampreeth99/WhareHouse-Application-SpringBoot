@@ -38,7 +38,7 @@ public class ShipmentType implements Serializable{
 	private String shipmentGrade;
 	
 
-	@Column(name = "shipment_description_col",length = 50)
+	@Column(name = "shipment_description_col",length = 150)
 	private String description;
 	
 	

@@ -2,50 +2,60 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Uom's</title>
+<title>Orders</title>
 
 <link rel="stylesheet" href="../../../../common.css">
 </head>
 <body class="bg-dark" style="text-align: center;">
+
+<div class="text-center text-white">
+  
+<label th:text="${delmsg}"></label>
+<label th:text="${registerResult}"></label>
+<label th:text="${delmsg}"></label>
+  
+</div>
+
  
- <div class="headings">
-  <h3 class="text-white ">Unit of Measure</h3>
- </div> 
- 
- <!-- Table Strated -->
- 
- <span th:text="${deletedOutput}" class="text-white"></span> 
- <span th:text="${savedOutput}" class="text-white"></span>
- 
- 
- 
+
  <div >
       <table class="table ">
          <thead style="background-color: grey;font-size: 25px;">
                <tr class="fw-bold">
+                   
+                    <td>Order Mode</td>
+                   
+                   
+                   <td>Order Code</td>
                   
-                  <td>Uom Id</td>
+                   <td>Order Type</td>
+                   
+                   <td>Order Accept</td>
+                   
+                   <td>description</td>
                    
                    
-                   <td>Uom Model</td>
-                   
-                   
+                   <td></td>
                    
                   
                    
                </tr>
          </thead>
          
-         <tbody th:each="uom:${listOfUoms}" class="table-dark table-hover ">
+         <tbody th:each="o:${liOrders}" class="table-dark table-hover ">
               
               <tr >
-                  <td th:text="${uom.uomId}"></td>
+                  <td th:text="${o.orderMode}"></td>
                   
-                  <td th:text="${uom.uomModel}"></td>
+                  <td th:text="${o.orderCode}"></td>
+                 
+                  <td th:text="${o.orderType}"></td>
                   
-                  <td > <a th:href="@{/uom/findOne(id=${uom.uomId})}" class="text-primary fw-bold" style="text-decoration: none;">more,,,</a></td>
+                  <td th:text="${o.orderAccept}"></td>
+                 
+                  <td th:text="${o.description}"></td>
                   
-                  
+                  <td><a th:href="@{./oneOrder(id=${o.orderMethodId})}">more...</a></td>
                   
               </tr>
               
@@ -53,6 +63,9 @@
       
       </table>
  </div>
+
+
+</div>
  
 </body>
 

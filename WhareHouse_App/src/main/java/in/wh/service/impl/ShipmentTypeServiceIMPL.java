@@ -22,8 +22,8 @@ public class ShipmentTypeServiceIMPL implements IShipmentTypeService {
 
 	@Override
 	public String saveShipmentType(ShipmentType shipmentType) {
-		Integer savedId=shipRepo.save(shipmentType).getShipmentId();
-		return "shipment is saved By Id"+savedId;
+		shipRepo.save(shipmentType).getShipmentId();
+		return "shipment is saved By SHipmentCode"+" "+shipmentType.getShipmentCode();
 	}
 
 	@Override

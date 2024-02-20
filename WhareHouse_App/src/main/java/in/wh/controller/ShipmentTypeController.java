@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.wh.model.ShipmentType;
 import in.wh.service.IShipmentTypeService;
@@ -18,6 +19,12 @@ import in.wh.service.IShipmentTypeService;
 @Controller
 @RequestMapping("/shipmentType")
 public class ShipmentTypeController {
+	
+	char c=25;
+	
+	 {
+		System.out.println("=============="+c);
+	}
 	
 	@Autowired
 	private IShipmentTypeService shipService;
@@ -29,11 +36,11 @@ public class ShipmentTypeController {
 	}
 	
 	@PostMapping("/save")
-	public String processShipmentRegister(@ModelAttribute ShipmentType shipmentType,Map<String, Object> map) {
+	public String processShipmentRegister(@ModelAttribute ShipmentType shipmentType,Map<String, Object> map,RedirectAttributes r) {
 	
 		String saveOuptput=shipService.saveShipmentType(shipmentType);
-		map.put("savedResultMsg", saveOuptput);
-		return "shipment_type/register_success";
+		r.addFlashAttribute("savedoutput", saveOuptput);
+		return "redirect:allShipmentTypes";
 		
 	}
 	
@@ -61,18 +68,18 @@ public class ShipmentTypeController {
 	}
 	
 	@PostMapping("/update")
-	public String processEditForm(@ModelAttribute ShipmentType shipmentType,Map<String, Object> map) {
+	public String processEditForm(@ModelAttribute ShipmentType shipmentType,Map<String, Object> map,RedirectAttributes r) {
 		String updatedMsg=shipService.updateShipmentTypeById(shipmentType);
-		map.put("updatedMsg", updatedMsg);
-		
-		return "shipment_type/updateResult";
+		r.addFlashAttribute("updatedresult", updatedMsg);
+		r.addAttribute("id", shipmentType.getShipmentId());
+		return "redirect:oneShipmentType";
 	}
 	
 	@GetMapping("/deleteById")
 	public String deleteShipmentById(@RequestParam Integer id,Map<String, Object> map) {
 		String deleteOuput=shipService.deleteShipmentTypeById(id);
-		map.put("deleteOuput", deleteOuput);
-		return "forward:allShipmentTypes";
+		map.put("deleteOutput", deleteOuput);
+		return "shipment_type/delete_success";
 	}
 	
 	

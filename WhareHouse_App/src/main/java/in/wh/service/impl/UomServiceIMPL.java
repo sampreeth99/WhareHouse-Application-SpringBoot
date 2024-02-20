@@ -19,7 +19,9 @@ public class UomServiceIMPL implements IUomService{
 
 	@Override
 	public String saveUom(Uom uom) {
-		return uomRepo.save(uom).getUomId()+"based Uom is Saved Succesfully";
+				Uom u=uomRepo.save(uom);
+				return u.getUomModel()+" "+"is Registered Succesfully By Uom Id"+" "+u.getUomId();
+						
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class UomServiceIMPL implements IUomService{
 			uom1=opt.get();
 			BeanUtils.copyProperties(uom, uom1);
 			uomRepo.save(uom1);
-			updatedMsg="Uom updated succesfully by id"+uom.getUomId();
+			updatedMsg=uom.getUomModel()+" "+" updated succesfully ";
 		}else {
 			updatedMsg="Uom not found for updation by id"+uom.getUomId();
 			
